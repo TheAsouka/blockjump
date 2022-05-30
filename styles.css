@@ -13,7 +13,7 @@
     background-color: blue;
     position: absolute;
     border-radius: 50%;
-    display: inline-block;
+
 }
 
 .ground{
@@ -50,4 +50,14 @@
 
 .hide{
     visibility: hidden;
+}
+
+.restart{
+    width: 200;
+    height: 100px;
+    position: center;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid black;
+    background-color: green;
 }

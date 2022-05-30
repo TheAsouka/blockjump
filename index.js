@@ -40,10 +40,8 @@ class NFT{
 
 function createPlayer() {
     player.classList.add("player")
-    
     player.style.bottom = playerBottomSpace + "px"
-    player.style.left = grounds[0].left
-
+    player.style.left = grounds[0].lef
     container.appendChild(player)
 }
 
@@ -106,7 +104,7 @@ function moveNFTs(){
 function moveGrounds(){
     if(playerLeftSpace > 200){
         grounds.forEach(ground => {
-            ground.bottom -= 5
+            ground.bottom -= 4
             let visual = ground.visual
             visual.style.bottom = ground.bottom + "px"
 
@@ -133,7 +131,7 @@ function jump(){
         checkIfCollectNft()
         playerBottomSpace += 20
         player.style.bottom = playerBottomSpace + "px"
-        if(playerBottomSpace > startingPoint + 200){
+        if(playerBottomSpace > startingPoint + 180){
             fall()
         }
     }, 30);
@@ -159,7 +157,7 @@ function moveLeft(){
             playerLeftSpace -= 5
             player.style.left = playerLeftSpace + "px"
         }
-    }, 30);
+    }, 20);
 }
 
 function moveRight(){
@@ -228,11 +226,13 @@ function loadImageOfMintedNfts(){
 
 let isGameOver = false
 function startGame() {
+    console.log("A")
     if(!isGameOver) {
+        console.log("B")
         createGrounds()
         createPlayer()
         setInterval(moveGrounds(), 30)
-        setInterval(moveNFTs, 30)
+        setInterval(moveNFTs(), 30)
         jump()
         document.addEventListener("keyup", onKeyPress)
     }
@@ -257,11 +257,25 @@ function endGame() {
     grid.classList.remove("hide")
     scoreElement.innerText = "Score : " + score
     nftScoreElement.innerHTML = "NFT Score : " + window.nftScore
+    scoreElement.classList.remove("hide")
+    nftScoreElement.classList.remove("hide")
 
     clearInterval(rightTimerid)
     clearInterval(leftTimerId)
     clearInterval(downTimerId)
     clearInterval(upTimerId)
+}
+
+function restartGame(){
+    console.log("restart")
+    isGameOver = false
+    player.classList.remove("hide")
+    grid.classList.add("hide")
+    score = 0
+    nftScore = 0
+    startGame()
+    scoreElement.classList.add("hide")
+    nftScoreElement.classList.add("hide")
 }
 
 function onKeyPress(event){
